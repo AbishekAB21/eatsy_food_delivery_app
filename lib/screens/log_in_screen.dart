@@ -111,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                                         borderRadius:
                                             BorderRadius.circular(10)))),
                             onPressed: () {
-                              signinuser;
+                              signinuser();
                             },
                             child: Text(
                               "Sign In",
