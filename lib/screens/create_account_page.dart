@@ -1,15 +1,57 @@
+import 'package:eatsy_food_delivery_app/screens/home_screen.dart';
 import 'package:eatsy_food_delivery_app/screens/log_in_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccountScreen extends StatefulWidget {
-   CreateAccountScreen({super.key});
-
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  CreateAccountScreen({super.key});
 
   @override
   State<CreateAccountScreen> createState() => _CreateAccountScreenState();
+}
+
+final emailController = TextEditingController();
+final passwordController = TextEditingController();
+final confirmpasswordController = TextEditingController();
+
+Future signUp(BuildContext context) async {
+  if (passwordmatches()) {
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim());
+
+    confirmationNotification(context);
+
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ));
+
+    emailController.clear();
+    passwordController.clear();
+    confirmpasswordController.clear();
+  }
+}
+
+bool passwordmatches() {
+  if (passwordController.text.trim() == confirmpasswordController.text.trim()) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+void confirmationNotification(context) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text("Account Created Succesfully "),
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: apptheme.SnackBarColor,
+    duration: Duration(seconds: 3),
+    showCloseIcon: true,
+    closeIconColor: apptheme.secondaryColor,
+  ));
 }
 
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
@@ -38,13 +80,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         "Create Your Eatsy Account",
                         style: apptheme.LoginWelcome,
                       ),
-
                       SizedBox(
                         height: 30,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextField(
+                          controller: emailController,
                           decoration: InputDecoration(
                               hintText: "E-mail",
                               hintStyle: apptheme.LoginHintText,
@@ -60,6 +102,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextField(
+                          controller: passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                               hintText: "Password",
@@ -77,6 +120,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextField(
+                          controller: confirmpasswordController,
                           obscureText: true,
                           decoration: InputDecoration(
                               hintText: "Confirm Password",
@@ -89,14 +133,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Or",
-                        style: apptheme.LoginText1,
-                      ),
-                      SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       SizedBox(
                         height: 56,
@@ -112,11 +149,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                         borderRadius:
                                             BorderRadius.circular(10)))),
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => CreateAccountScreen(),
-                                  ));
+                              signUp(context);
                             },
                             child: Text(
                               "Sign Up",

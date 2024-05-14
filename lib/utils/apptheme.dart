@@ -6,13 +6,13 @@ abstract class AppTheme {
   final Color primaryColor;
   final Color primaryColor2;
   final Color secondaryColor;
+  final Color SnackBarColor;
   final TextStyle SplashText;
   final TextStyle LoginWelcome;
   final TextStyle LoginText1;
   final TextStyle CreateAccountText;
   final TextStyle LoginHintText;
   final TextStyle ButtonText;
-
   AppTheme({
     required this.primaryColor,
     required this.primaryColor2,
@@ -23,6 +23,7 @@ abstract class AppTheme {
     required this.CreateAccountText,
     required this.LoginHintText,
     required this.ButtonText,
+    required this.SnackBarColor,
   });
 }
 
@@ -32,6 +33,7 @@ class AppDefaultTheme extends AppTheme {
             primaryColor: Color.fromARGB(255, 233, 233, 233),
             primaryColor2: Color.fromARGB(255, 236, 110, 101),
             secondaryColor: Colors.white,
+            SnackBarColor: Colors.green.shade800,
             SplashText: TextStyle(
                 color: Color.fromARGB(255, 236, 110, 101),
                 fontSize: 50,
