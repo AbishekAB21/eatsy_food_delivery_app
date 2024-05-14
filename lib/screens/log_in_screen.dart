@@ -1,5 +1,6 @@
 import 'package:eatsy_food_delivery_app/screens/create_account_page.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -7,6 +8,11 @@ class LoginScreen extends StatelessWidget {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  void signinuser() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text, password: passwordController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +110,9 @@ class LoginScreen extends StatelessWidget {
                                     RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)))),
-                            onPressed: () {},
+                            onPressed: () {
+                              signinuser;
+                            },
                             child: Text(
                               "Sign In",
                               style: apptheme.ButtonText,

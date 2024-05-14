@@ -1,4 +1,4 @@
-import 'package:eatsy_food_delivery_app/screens/log_in_screen.dart';
+import 'package:eatsy_food_delivery_app/pages/auth_page.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:flutter/material.dart';
 
@@ -45,12 +45,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void whereToGo() async {
+
     await Future.delayed(Duration(seconds: 3));
 
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => LoginScreen(),
+          builder: (context) => AuthenticationPage(),
         ));
   }
 }

@@ -9,6 +9,7 @@ abstract class AppTheme {
   final TextStyle SplashText;
   final TextStyle LoginWelcome;
   final TextStyle LoginText1;
+  final TextStyle CreateAccountText;
   final TextStyle LoginHintText;
   final TextStyle ButtonText;
 
@@ -19,6 +20,7 @@ abstract class AppTheme {
     required this.SplashText,
     required this.LoginWelcome,
     required this.LoginText1,
+    required this.CreateAccountText,
     required this.LoginHintText,
     required this.ButtonText,
   });
@@ -40,6 +42,8 @@ class AppDefaultTheme extends AppTheme {
                 fontWeight: FontWeight.bold,),
             LoginText1: TextStyle(
                 fontSize: 12, color: Color.fromARGB(255, 236, 110, 101)),
+            CreateAccountText: TextStyle(
+                fontSize: 12, color: Colors.blue.shade700, fontWeight: FontWeight.w600), 
             LoginHintText: TextStyle(color: Colors.black54, fontSize: 12),
             ButtonText: TextStyle(fontSize: 18, fontWeight: FontWeight.bold));
 }
