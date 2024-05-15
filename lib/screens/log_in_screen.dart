@@ -2,7 +2,9 @@ import 'package:eatsy_food_delivery_app/screens/create_account_page.dart';
 import 'package:eatsy_food_delivery_app/screens/forgot_password_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -174,17 +176,23 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ConstrainedBox(
-                              constraints:
-                                  BoxConstraints(maxHeight: 30, maxWidth: 30),
-                              child: Image.asset("assets/google.png")),
+                          GestureDetector(
+                            onTap: (){/* Google Sign In */},
+                            child: ConstrainedBox(
+                                constraints:
+                                    BoxConstraints(maxHeight: 30, maxWidth: 30),
+                                child: Image.asset("assets/google.png")),
+                          ),
                           SizedBox(
                             width: 50,
                           ),
-                          ConstrainedBox(
-                              constraints:
-                                  BoxConstraints(maxHeight: 30, maxWidth: 30),
-                              child: Image.asset("assets/apple.png")),
+                          GestureDetector(
+                            onTap: (){/* Apple Sign In */},
+                            child: ConstrainedBox(
+                                constraints:
+                                    BoxConstraints(maxHeight: 30, maxWidth: 30),
+                                child: Image.asset("assets/apple.png")),
+                          ),
                         ],
                       )
                     ],
