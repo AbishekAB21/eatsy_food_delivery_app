@@ -1,4 +1,5 @@
 import 'package:eatsy_food_delivery_app/screens/create_account_page.dart';
+import 'package:eatsy_food_delivery_app/screens/forgot_password_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +87,14 @@ class LoginScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
-                                onPressed: () {/* Forgot Password Screen */},
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ForgotPasswordScreen(),
+                                      ));
+                                },
                                 child: Text(
                                   "Forgot Password ?",
                                   style: apptheme.LoginText1,

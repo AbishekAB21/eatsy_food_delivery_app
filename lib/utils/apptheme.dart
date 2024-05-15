@@ -13,6 +13,9 @@ abstract class AppTheme {
   final TextStyle CreateAccountText;
   final TextStyle LoginHintText;
   final TextStyle ButtonText;
+  final TextStyle ForgotPasswordText;
+  final Color ErrorColor;
+  final TextStyle ErrorMessage;
   AppTheme({
     required this.primaryColor,
     required this.primaryColor2,
@@ -23,7 +26,10 @@ abstract class AppTheme {
     required this.CreateAccountText,
     required this.LoginHintText,
     required this.ButtonText,
+    required this.ForgotPasswordText,
     required this.SnackBarColor,
+    required this.ErrorColor,
+    required this.ErrorMessage,
   });
 }
 
@@ -47,5 +53,10 @@ class AppDefaultTheme extends AppTheme {
             CreateAccountText: TextStyle(
                 fontSize: 12, color: Colors.blue.shade700, fontWeight: FontWeight.w600), 
             LoginHintText: TextStyle(color: Colors.black54, fontSize: 12),
-            ButtonText: TextStyle(fontSize: 18, fontWeight: FontWeight.bold));
+            ForgotPasswordText: TextStyle(
+                fontSize: 12, color: Color.fromARGB(255, 236, 110, 101), fontWeight: FontWeight.w600),
+            ButtonText: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ErrorColor: Colors.red.shade900,
+            ErrorMessage: TextStyle(fontSize: 10, color: Colors.white, fontWeight:FontWeight.w600 )
+            );
 }
