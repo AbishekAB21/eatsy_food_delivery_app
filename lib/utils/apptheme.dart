@@ -21,6 +21,8 @@ abstract class AppTheme {
   final TextStyle CategoryTile;
   final TextStyle PromoBoxText1;
   final TextStyle PromoBoxText2;
+  final TextStyle HomeScreenSearchHint;
+
   AppTheme({
     required this.primaryColor,
     required this.primaryColor2,
@@ -40,6 +42,8 @@ abstract class AppTheme {
     required this.CategoryTile,
     required this.PromoBoxText1,
     required this.PromoBoxText2,
+    required this.HomeScreenSearchHint,
+
   });
 }
 
@@ -91,5 +95,6 @@ class AppDefaultTheme extends AppTheme {
               fontWeight: FontWeight.w600,
               fontSize: 14,
               color: Colors.white),
+          HomeScreenSearchHint: TextStyle(color: Colors.black54, fontSize: 16)
         );
 }

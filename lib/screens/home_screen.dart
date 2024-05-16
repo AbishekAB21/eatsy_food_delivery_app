@@ -2,9 +2,11 @@ import 'package:eatsy_food_delivery_app/models/category_model.dart';
 import 'package:eatsy_food_delivery_app/screens/profile_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:eatsy_food_delivery_app/widgets/category_box.dart';
+import 'package:eatsy_food_delivery_app/widgets/food_search_box.dart';
 import 'package:eatsy_food_delivery_app/widgets/promo_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: apptheme.primaryColor,
         appBar: CustomAppBar(),
         body: SingleChildScrollView(
           child: Column(
@@ -35,9 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     shrinkWrap: true,
                     itemCount: Category.categories.length,
                     itemBuilder: (context, index) {
-                    
-                    return CategoryBox(category: Category.categories[index]);
-                  },),
+                      return CategoryBox(category: Category.categories[index]);
+                    },
+                  ),
                 ),
               ),
               Padding(
@@ -49,16 +52,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     shrinkWrap: true,
                     itemCount: 3,
                     itemBuilder: (context, index) {
-                    
-                    return PromoBox();
-                  },),
+                      return PromoBox();
+                    },
+                  ),
                 ),
-              )
+              ),
+              FoodSearchBox()
             ],
           ),
         ));
   }
 }
+
+
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -71,7 +77,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: apptheme.primaryColor2,
       leading: IconButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(),
+                ));
           },
           icon: Icon(
             Icons.person_2_rounded,
