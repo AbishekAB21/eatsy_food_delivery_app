@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: apptheme.primaryColor,
+        backgroundColor: apptheme.primaryColor,
         appBar: CustomAppBar(),
         body: SingleChildScrollView(
           child: Column(
@@ -64,8 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-
-
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
@@ -103,7 +101,38 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
             onPressed: () {
-              signoutuser();
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  elevation: 4,
+                  shadowColor: Colors.black,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                  backgroundColor: apptheme.primaryColor2,
+                  content: Text(
+                    "Are you sure that you want to log out ?",
+                    style: apptheme.UserName,
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          signoutuser();
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          "Yes",
+                          style: apptheme.UserName,
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          "No",
+                          style: apptheme.UserName,
+                        ))
+                  ],
+                ),
+              );
             },
             icon: Icon(
               Icons.logout,
