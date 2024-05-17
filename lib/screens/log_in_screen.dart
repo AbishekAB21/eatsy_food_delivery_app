@@ -1,5 +1,6 @@
 import 'package:eatsy_food_delivery_app/screens/create_account_page.dart';
 import 'package:eatsy_food_delivery_app/screens/forgot_password_screen.dart';
+import 'package:eatsy_food_delivery_app/services/auth_service.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -177,7 +178,9 @@ class LoginScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
-                            onTap: (){/* Google Sign In */},
+                            onTap: (){
+                              AuthService().signInWithGoogle();
+                            },
                             child: ConstrainedBox(
                                 constraints:
                                     BoxConstraints(maxHeight: 30, maxWidth: 30),
