@@ -28,17 +28,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         backgroundColor: apptheme.primaryColor,
         appBar: CustomAppBar(),
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
                   height: 100,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
                     itemCount: Category.categories.length,
                     itemBuilder: (context, index) {
                       return CategoryBox(category: Category.categories[index]);
@@ -46,42 +44,53 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              Padding(
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
                   height: 125,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
                     itemCount: Promo.promos.length,
                     itemBuilder: (context, index) {
-                      return PromoBox(promo: Promo.promos[index],);
+                      return PromoBox(promo: Promo.promos[index]);
                     },
                   ),
                 ),
               ),
-              FoodSearchBox(),
-              SizedBox(height: 20,),
-              Padding(
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: FoodSearchBox(),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Text("Top Rated",style: apptheme.HomescreenHeading,)),
+                  child: Text(
+                    "Top Rated",
+                    style: apptheme.HomescreenHeading,
+                  ),
+                ),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: Restaurant.restaurants.length,
-                itemBuilder: (context, index) {
-                return RestaurantCard(restaurant: Restaurant.restaurants[index]);
-              },)
-            ],
-          ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return RestaurantCard(
+                      restaurant: Restaurant.restaurants[index]);
+                },
+                childCount: Restaurant.restaurants.length,
+              ),
+            ),
+          ],
         ));
   }
 }
-
-
-
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -125,7 +134,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 builder: (context) => AlertDialog(
                   elevation: 4,
                   shadowColor: Colors.black,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5)),
                   backgroundColor: apptheme.primaryColor2,
                   content: Text(
                     "Are you sure that you want to log out ?",
