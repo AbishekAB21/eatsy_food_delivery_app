@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: apptheme.primaryColor,
         appBar: CustomAppBar(),
         body: CustomScrollView(
+          physics: BouncingScrollPhysics(),
           slivers: [
             SliverToBoxAdapter(
               child: Padding(
