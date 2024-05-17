@@ -22,6 +22,9 @@ abstract class AppTheme {
   final TextStyle PromoBoxText1;
   final TextStyle PromoBoxText2;
   final TextStyle HomeScreenSearchHint;
+  final TextStyle HomescreenHeading;
+  final TextStyle DeliveryTime;
+  final TextStyle restaurantName;
 
   AppTheme({
     required this.primaryColor,
@@ -43,7 +46,9 @@ abstract class AppTheme {
     required this.PromoBoxText1,
     required this.PromoBoxText2,
     required this.HomeScreenSearchHint,
-
+    required this.HomescreenHeading,
+    required this.DeliveryTime,
+    required this.restaurantName,
   });
 }
 
@@ -95,6 +100,11 @@ class AppDefaultTheme extends AppTheme {
               fontWeight: FontWeight.w600,
               fontSize: 14,
               color: Colors.white),
-          HomeScreenSearchHint: TextStyle(color: Colors.black54, fontSize: 16)
+          HomeScreenSearchHint: TextStyle(color: Colors.black54, fontSize: 16),
+          HomescreenHeading: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.w900, color: Colors.black),
+          DeliveryTime: TextStyle(color: Colors.black54, fontSize: 12),
+          restaurantName: TextStyle(
+              fontSize: 16, fontWeight: FontWeight.w900, color: Colors.black),
         );
 }

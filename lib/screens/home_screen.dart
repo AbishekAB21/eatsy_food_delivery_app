@@ -1,12 +1,14 @@
 import 'package:eatsy_food_delivery_app/models/category_model.dart';
+import 'package:eatsy_food_delivery_app/models/promo_model.dart';
+import 'package:eatsy_food_delivery_app/models/restaurant_model.dart';
 import 'package:eatsy_food_delivery_app/screens/profile_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:eatsy_food_delivery_app/widgets/category_box.dart';
 import 'package:eatsy_food_delivery_app/widgets/food_search_box.dart';
 import 'package:eatsy_food_delivery_app/widgets/promo_box.dart';
+import 'package:eatsy_food_delivery_app/widgets/restaurant_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: CustomAppBar(),
         body: SingleChildScrollView(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -50,19 +53,35 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
-                    itemCount: 3,
+                    itemCount: Promo.promos.length,
                     itemBuilder: (context, index) {
-                      return PromoBox();
+                      return PromoBox(promo: Promo.promos[index],);
                     },
                   ),
                 ),
               ),
-              FoodSearchBox()
+              FoodSearchBox(),
+              SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text("Top Rated",style: apptheme.HomescreenHeading,)),
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: Restaurant.restaurants.length,
+                itemBuilder: (context, index) {
+                return RestaurantCard(restaurant: Restaurant.restaurants[index]);
+              },)
             ],
           ),
         ));
   }
 }
+
+
+
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
