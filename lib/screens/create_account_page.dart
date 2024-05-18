@@ -33,7 +33,7 @@ Future signUp(BuildContext context) async {
     passwordController.clear();
     confirmpasswordController.clear();
   }
-}
+} 
 
 bool passwordmatches() {
   if (passwordController.text.trim() == confirmpasswordController.text.trim()) {

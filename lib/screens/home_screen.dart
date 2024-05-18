@@ -1,6 +1,7 @@
 import 'package:eatsy_food_delivery_app/models/category_model.dart';
 import 'package:eatsy_food_delivery_app/models/promo_model.dart';
 import 'package:eatsy_food_delivery_app/models/restaurant_model.dart';
+import 'package:eatsy_food_delivery_app/screens/basket_screen.dart';
 import 'package:eatsy_food_delivery_app/screens/profile_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:eatsy_food_delivery_app/widgets/category_box.dart';
@@ -166,6 +167,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             },
             icon: Icon(
               Icons.logout,
+              color: apptheme.secondaryColor,
+            )),
+        IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BasketScreen(),
+                  ));
+            },
+            icon: Icon(
+              Icons.shopping_cart_rounded,
               color: apptheme.secondaryColor,
             ))
       ],

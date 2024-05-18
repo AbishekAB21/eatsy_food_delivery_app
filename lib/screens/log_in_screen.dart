@@ -194,7 +194,7 @@ class LoginScreen extends StatelessWidget {
                             child: ConstrainedBox(
                                 constraints:
                                     BoxConstraints(maxHeight: 30, maxWidth: 30),
-                                child: Image.asset("assets/apple.png")),
+                                child: Image.asset("assets/twitter.png")),
                           ),
                         ],
                       )

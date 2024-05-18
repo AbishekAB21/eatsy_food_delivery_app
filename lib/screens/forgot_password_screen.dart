@@ -35,7 +35,7 @@ Future resetpassword(BuildContext context) async {
       Navigator.pop(context);
     });
   } on FirebaseAuthException catch (e) {
-    print(e);
+    print(e); 
     showDialog(
       context: context,
       builder: (context) => SizedBox(

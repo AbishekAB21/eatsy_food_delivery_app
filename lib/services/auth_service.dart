@@ -11,7 +11,7 @@ class AuthService{
 
     // Obtain auth details from request
     final GoogleSignInAuthentication gAuth = await gUser!.authentication;
-
+ 
     // Create a new credential for the user
     final credentials = GoogleAuthProvider.credential(
       accessToken: gAuth.accessToken,
