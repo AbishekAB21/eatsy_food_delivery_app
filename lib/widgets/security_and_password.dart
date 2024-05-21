@@ -1,9 +1,9 @@
-import 'package:eatsy_food_delivery_app/screens/edit_profile_screen.dart';
+import 'package:eatsy_food_delivery_app/screens/forgot_password_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:flutter/material.dart';
 
-class YourProfile extends StatelessWidget {
-  const YourProfile({super.key});
+class SecurityAndPassword extends StatelessWidget {
+  const SecurityAndPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +11,7 @@ class YourProfile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => EditProfileScreen(),
-              ));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPasswordScreen(),));
         },
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
@@ -28,14 +24,14 @@ class YourProfile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Icon(
-                Icons.person,
+                Icons.shield,
                 color: apptheme.primaryColor2,
               ),
               SizedBox(
                 width: 20,
               ),
               Text(
-                "Your Profile",
+                "Security and Password",
                 style: apptheme.ProfileScreenTexts,
               )
             ],

@@ -2,6 +2,7 @@ import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:eatsy_food_delivery_app/widgets/log_out_box.dart';
 import 'package:eatsy_food_delivery_app/widgets/order_&_about_box.dart';
 import 'package:eatsy_food_delivery_app/widgets/profile_box.dart';
+import 'package:eatsy_food_delivery_app/widgets/security_and_password.dart';
 import 'package:eatsy_food_delivery_app/widgets/your_profile_box.dart';
 import 'package:flutter/material.dart';
 
@@ -32,11 +33,13 @@ class ProfileScreen extends StatelessWidget {
                 height: 20,
               ),
               YourProfile(),
-              // Add Security and Password section
+              SizedBox(
+                height: 10,
+              ),
+              SecurityAndPassword(),
               SizedBox(
                 height: 40,
               ),
-
               LogOutBox(),
             ],
           )),
