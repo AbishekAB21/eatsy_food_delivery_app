@@ -32,6 +32,7 @@ class ProfileScreen extends StatelessWidget {
                 height: 20,
               ),
               YourProfile(),
+              // Add Security and Password section
               SizedBox(
                 height: 40,
               ),
