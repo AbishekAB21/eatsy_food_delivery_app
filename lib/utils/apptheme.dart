@@ -28,6 +28,7 @@ abstract class AppTheme {
   final TextStyle DeliveryTime;
   final TextStyle restaurantName;
   final TextStyle ProfileScreenTexts;
+  final TextStyle RestaurantInfoScreenTitle;
 
   AppTheme({
     required this.primaryColor,
@@ -55,6 +56,7 @@ abstract class AppTheme {
     required this.DeliveryTime,
     required this.restaurantName,
     required this.ProfileScreenTexts,
+    required this.RestaurantInfoScreenTitle,
   });
 }
 
@@ -87,7 +89,8 @@ class AppDefaultTheme extends AppTheme {
                 color: Color.fromARGB(255, 236, 110, 101),
                 fontWeight: FontWeight.w600),
             ButtonText: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ButtonText2: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+            ButtonText2: TextStyle(
+                fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
             ErrorColor: Colors.red.shade900,
             ShadowColor: Colors.black,
             ErrorMessage: TextStyle(
@@ -116,7 +119,9 @@ class AppDefaultTheme extends AppTheme {
             restaurantName: TextStyle(
                 fontSize: 16, fontWeight: FontWeight.w900, color: Colors.black),
             ProfileScreenTexts: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: Colors.black));
+                fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black),
+            RestaurantInfoScreenTitle: TextStyle(
+                fontSize: 20,
+                color: Color.fromARGB(255, 236, 110, 101),
+                fontWeight: FontWeight.w900));
 }

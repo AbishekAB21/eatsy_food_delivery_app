@@ -1,5 +1,6 @@
 import 'package:eatsy_food_delivery_app/models/restaurant_model.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
+import 'package:eatsy_food_delivery_app/widgets/restaurant_info.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
@@ -46,6 +47,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
         extendBodyBehindAppBar: true,
         body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 height: 200,
@@ -56,7 +58,9 @@ class RestaurantDetailsScreen extends StatelessWidget {
                     image: DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(restaurant.imageUrl))),
-              )
+              ),
+
+              RestaurantInformationScreen(restaurant: restaurant),
             ],
           ),
         ),

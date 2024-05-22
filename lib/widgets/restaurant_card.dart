@@ -1,6 +1,7 @@
 import 'package:eatsy_food_delivery_app/models/restaurant_model.dart';
 import 'package:eatsy_food_delivery_app/screens/restaurant_details_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
+import 'package:eatsy_food_delivery_app/widgets/restaurant_tags.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -63,14 +64,7 @@ class RestaurantCard extends StatelessWidget {
                   SizedBox(
                     height: 5.0,
                   ),
-                  Row(
-                    children: restaurant.tags
-                        .map((tag) => restaurant.tags.indexOf(tag) ==
-                                restaurant.tags.length - 1
-                            ? Text(tag)
-                            : Text("$tag, "))
-                        .toList(),
-                  ),
+                  RestaurantTags(restaurant: restaurant),
                   SizedBox(
                     height: 5,
                   ),
@@ -85,3 +79,4 @@ class RestaurantCard extends StatelessWidget {
     );
   }
 }
+
