@@ -15,6 +15,7 @@ abstract class AppTheme {
   final TextStyle CreateAccountText;
   final TextStyle LoginHintText;
   final TextStyle ButtonText;
+  final TextStyle ButtonText2;
   final TextStyle ForgotPasswordText;
   final TextStyle ErrorMessage;
   final TextStyle HomeScreenAppBar;
@@ -38,6 +39,7 @@ abstract class AppTheme {
     required this.CreateAccountText,
     required this.LoginHintText,
     required this.ButtonText,
+    required this.ButtonText2,
     required this.ForgotPasswordText,
     required this.SnackBarColor,
     required this.ErrorColor,
@@ -85,6 +87,7 @@ class AppDefaultTheme extends AppTheme {
                 color: Color.fromARGB(255, 236, 110, 101),
                 fontWeight: FontWeight.w600),
             ButtonText: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ButtonText2: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
             ErrorColor: Colors.red.shade900,
             ShadowColor: Colors.black,
             ErrorMessage: TextStyle(
