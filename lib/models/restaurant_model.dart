@@ -31,7 +31,11 @@ class Restaurant extends Equatable {
         imageUrl:
             "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D",
         name: "Golden Gate",
-        tags: ["Italian", "Dessert", "Ice Cream"],
+        tags: MenuItem.menuitems
+            .where((menuItem) => menuItem.restaurantId == 1)
+            .map((menuItem) => menuItem.category)
+            .toSet()
+            .toList(),
         menuitems: MenuItem.menuitems
             .where((menuItem) => menuItem.restaurantId == 1)
             .toList(),
@@ -42,8 +46,12 @@ class Restaurant extends Equatable {
         id: 2,
         imageUrl:
             "https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        name: "Golden Gate",
-        tags: ["Italian", "Dessert", "Ice Cream"],
+        name: "Food Paradise",
+        tags: MenuItem.menuitems
+            .where((menuItem) => menuItem.restaurantId == 2)
+            .map((menuItem) => menuItem.category)
+            .toSet()
+            .toList(),
         menuitems: MenuItem.menuitems
             .where((menuItem) => menuItem.restaurantId == 2)
             .toList(),
@@ -54,8 +62,12 @@ class Restaurant extends Equatable {
         id: 3,
         imageUrl:
             "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        name: "Golden Gate",
-        tags: ["Italian", "Dessert", "Ice Cream"],
+        name: "Foodies Spot",
+        tags: MenuItem.menuitems
+            .where((menuItem) => menuItem.restaurantId == 3)
+            .map((menuItem) => menuItem.category)
+            .toSet()
+            .toList(),
         menuitems: MenuItem.menuitems
             .where((menuItem) => menuItem.restaurantId == 3)
             .toList(),
@@ -66,8 +78,12 @@ class Restaurant extends Equatable {
         id: 4,
         imageUrl:
             "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        name: "Golden Gate",
-        tags: ["Italian", "Dessert", "Ice Cream"],
+        name: "Eat Well",
+        tags: MenuItem.menuitems
+            .where((menuItem) => menuItem.restaurantId == 4)
+            .map((menuItem) => menuItem.category)
+            .toSet()
+            .toList(),
         menuitems: MenuItem.menuitems
             .where((menuItem) => menuItem.restaurantId == 4)
             .toList(),
