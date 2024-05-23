@@ -59,12 +59,48 @@ class RestaurantDetailsScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                         image: NetworkImage(restaurant.imageUrl))),
               ),
-
               RestaurantInformationScreen(restaurant: restaurant),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: restaurant.tags.length,
+                itemBuilder: (context, index) {
+                  return _buildMenuItems(restaurant, context, index);
+                },
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildMenuItems(
+      Restaurant restaurant, BuildContext context, int index) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Text(
+            restaurant.tags[index],
+            style: apptheme.RestaurantTags,
+          ),
+        ),
+        Column(
+          children: restaurant.menuitems
+              .where((menuItem) => menuItem.category == restaurant.tags[index])
+              .map((menuItem) => Column(
+                    children: [
+                      Container(
+                        child: ListTile(
+                          title: Text(menuItem.name),
+                        ),
+                      )
+                    ],
+                  ))
+              .toList(),
+        )
+      ],
     );
   }
 }

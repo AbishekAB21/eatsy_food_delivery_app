@@ -29,6 +29,7 @@ abstract class AppTheme {
   final TextStyle restaurantName;
   final TextStyle ProfileScreenTexts;
   final TextStyle RestaurantInfoScreenTitle;
+  final TextStyle RestaurantTags;
 
   AppTheme({
     required this.primaryColor,
@@ -57,6 +58,7 @@ abstract class AppTheme {
     required this.restaurantName,
     required this.ProfileScreenTexts,
     required this.RestaurantInfoScreenTitle,
+    required this.RestaurantTags
   });
 }
 
@@ -123,5 +125,7 @@ class AppDefaultTheme extends AppTheme {
             RestaurantInfoScreenTitle: TextStyle(
                 fontSize: 20,
                 color: Color.fromARGB(255, 236, 110, 101),
-                fontWeight: FontWeight.w900));
+                fontWeight: FontWeight.w900),
+            RestaurantTags: TextStyle(fontSize: 16, color: Color.fromARGB(255, 236, 110, 101), fontWeight: FontWeight.w900)
+            );
 }
