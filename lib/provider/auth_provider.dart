@@ -1,3 +1,4 @@
+import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -7,7 +8,7 @@ class AuthProvider with ChangeNotifier {
   User? _user;
   User? get user => _user;
 
-  Future<void> signIn(String email, String password) async {
+  Future<void> signIn(String email, String password, BuildContext context) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: email,
@@ -17,6 +18,12 @@ class AuthProvider with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       print("Error signing in: $e");
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Error Logging in : $e"),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: apptheme.ErrorColor,
+        duration: Duration(seconds: 3),
+      ));
       rethrow;
     }
   }
@@ -34,7 +41,7 @@ class AuthProvider with ChangeNotifier {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Account Created Successfully"),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.green,
+        backgroundColor: apptheme.SnackBarColor,
         duration: Duration(seconds: 3),
       ));
 
@@ -42,6 +49,12 @@ class AuthProvider with ChangeNotifier {
       Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {
       print("Error signing up: $e");
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Error Creating Account"),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: apptheme.ErrorColor,
+        duration: Duration(seconds: 3),
+      ));
       rethrow;
     }
   }

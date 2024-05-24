@@ -102,7 +102,7 @@ class LoginScreen extends StatelessWidget {
                                             BorderRadius.circular(10)))),
                             onPressed: () {
                               authProvider.signIn(emailController.text,
-                                  passwordController.text);
+                                  passwordController.text, context);
                             },
                             child: Text("Sign In", style: apptheme.ButtonText)),
                       ),
