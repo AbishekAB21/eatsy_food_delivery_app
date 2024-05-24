@@ -21,9 +21,38 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  Future<void> signUp(String email, String password, BuildContext context) async {
+    try {
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      _user = userCredential.user;
+      notifyListeners();
+
+      // Show confirmation notification
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Account Created Successfully"),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 3),
+      ));
+
+      // Navigate to home screen
+      Navigator.pushReplacementNamed(context, '/home');
+    } catch (e) {
+      print("Error signing up: $e");
+      rethrow;
+    }
+  }
+
   Future<void> signOut() async {
     await _auth.signOut();
     _user = null;
     notifyListeners();
+  }
+
+  bool passwordMatches(String password, String confirmPassword) {
+    return password == confirmPassword;
   }
 }

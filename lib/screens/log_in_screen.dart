@@ -1,5 +1,3 @@
-// lib/screens/login_screen.dart
-
 import 'package:eatsy_food_delivery_app/provider/auth_provider.dart';
 import 'package:eatsy_food_delivery_app/services/auth_service.dart';
 import 'package:flutter/material.dart';

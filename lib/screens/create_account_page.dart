@@ -1,8 +1,8 @@
-import 'package:eatsy_food_delivery_app/screens/home_screen.dart';
+import 'package:eatsy_food_delivery_app/provider/auth_provider.dart';
 import 'package:eatsy_food_delivery_app/screens/log_in_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   CreateAccountScreen({super.key});
@@ -11,52 +11,15 @@ class CreateAccountScreen extends StatefulWidget {
   State<CreateAccountScreen> createState() => _CreateAccountScreenState();
 }
 
-final emailController = TextEditingController();
-final passwordController = TextEditingController();
-final confirmpasswordController = TextEditingController();
-
-Future signUp(BuildContext context) async {
-  if (passwordmatches()) {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim());
-
-    confirmationNotification(context);
-
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomeScreen(),
-        ));
-
-    emailController.clear();
-    passwordController.clear();
-    confirmpasswordController.clear();
-  }
-} 
-
-bool passwordmatches() {
-  if (passwordController.text.trim() == confirmpasswordController.text.trim()) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-void confirmationNotification(context) {
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text("Account Created Succesfully "),
-    behavior: SnackBarBehavior.floating,
-    backgroundColor: apptheme.SnackBarColor,
-    duration: Duration(seconds: 3),
-    showCloseIcon: true,
-    closeIconColor: apptheme.secondaryColor,
-  ));
-}
-
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: apptheme.primaryColor,
@@ -73,16 +36,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           constraints:
                               BoxConstraints(maxHeight: 100, maxWidth: 100),
                           child: Image.asset("assets/cutlery.png")),
-                      SizedBox(
-                        height: 16,
-                      ),
+                      SizedBox(height: 16),
                       Text(
                         "Create Your Eatsy Account",
                         style: apptheme.LoginWelcome,
                       ),
-                      SizedBox(
-                        height: 30,
-                      ),
+                      SizedBox(height: 30),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextField(
@@ -96,9 +55,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               contentPadding: EdgeInsets.all(12)),
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextField(
@@ -114,13 +71,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               contentPadding: EdgeInsets.all(12)),
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextField(
-                          controller: confirmpasswordController,
+                          controller: confirmPasswordController,
                           obscureText: true,
                           decoration: InputDecoration(
                               hintText: "Confirm Password",
@@ -132,33 +87,43 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               contentPadding: EdgeInsets.all(12)),
                         ),
                       ),
-                      SizedBox(
-                        height: 30,
-                      ),
+                      SizedBox(height: 30),
                       SizedBox(
                         height: 56,
                         width: 310,
                         child: ElevatedButton(
-                            style: ButtonStyle(
-                                foregroundColor: MaterialStatePropertyAll(
-                                    apptheme.secondaryColor),
-                                backgroundColor: MaterialStatePropertyAll(
-                                    apptheme.primaryColor2),
-                                shape: MaterialStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)))),
-                            onPressed: () {
-                              signUp(context);
-                            },
-                            child: Text(
-                              "Sign Up",
-                              style: apptheme.ButtonText,
-                            )),
+                          style: ButtonStyle(
+                              foregroundColor: MaterialStatePropertyAll(
+                                  apptheme.secondaryColor),
+                              backgroundColor: MaterialStatePropertyAll(
+                                  apptheme.primaryColor2),
+                              shape: MaterialStatePropertyAll(
+                                  RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10)))),
+                          onPressed: () {
+                            if (authProvider.passwordMatches(
+                                passwordController.text,
+                                confirmPasswordController.text)) {
+                              authProvider.signUp(emailController.text,
+                                  passwordController.text, context);
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text("Passwords do not match"),
+                                behavior: SnackBarBehavior.floating,
+                                backgroundColor: Colors.red,
+                                duration: Duration(seconds: 3),
+                              ));
+                            }
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: apptheme.ButtonText,
+                          ),
+                        ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -167,22 +132,23 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                             style: apptheme.LoginText1,
                           ),
                           TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => LoginScreen(),
-                                    ));
-                              },
-                              child: Text(
-                                "Log in here",
-                                style: apptheme.CreateAccountText,
-                              ))
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen(),
+                                  ));
+                            },
+                            child: Text(
+                              "Log in here",
+                              style: apptheme.CreateAccountText,
+                            ),
+                          ),
                         ],
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
