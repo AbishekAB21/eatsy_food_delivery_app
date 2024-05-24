@@ -1,12 +1,17 @@
+import 'package:eatsy_food_delivery_app/provider/auth_provider.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:eatsy_food_delivery_app/widgets/textfield_profile_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+    final currentUser = authProvider.user;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: apptheme.primaryColor,
@@ -24,20 +29,16 @@ class EditProfileScreen extends StatelessWidget {
                 radius: 50,
                 backgroundColor: apptheme.primaryColor2,
               ),
-              SizedBox(height: 20,),
-              ReusableTextWidget(
-                label: "E-mail",
-                PrefixIcons: Icon(Icons.email),
-                visiblity: false,
-              ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-              // ReusableTextWidget(
-              //   label: "Password",
-              //   PrefixIcons: Icon(Icons.password_rounded),
-              //   visiblity: true,
-              // )
+              SizedBox(height: 20),
+              currentUser == null
+                  ? CircularProgressIndicator()
+                  : ReusableTextWidget(
+                      readOnly: true,
+                      label: currentUser.email ?? '',
+                      PrefixIcons: Icon(Icons.email, color: apptheme.primaryColor2),
+                      visiblity: false,
+                      SuffixIcons: Icon(Icons.edit_rounded, color: apptheme.primaryColor2),
+                    ),
             ],
           ),
         ),

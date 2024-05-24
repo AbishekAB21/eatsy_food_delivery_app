@@ -8,6 +8,15 @@ class AuthProvider with ChangeNotifier {
   User? _user;
   User? get user => _user;
 
+  AuthProvider() {
+    _loadCurrentUser();
+  }
+
+  void _loadCurrentUser() {
+    _user = _auth.currentUser;
+    notifyListeners();
+  }
+
   Future<void> signIn(String email, String password, BuildContext context) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
@@ -19,7 +28,7 @@ class AuthProvider with ChangeNotifier {
     } catch (e) {
       print("Error signing in: $e");
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Error Logging in : $e"),
+        content: Text("Error Logging in: $e"),
         behavior: SnackBarBehavior.floating,
         backgroundColor: apptheme.ErrorColor,
         duration: Duration(seconds: 3),
@@ -37,7 +46,6 @@ class AuthProvider with ChangeNotifier {
       _user = userCredential.user;
       notifyListeners();
 
-      // Show confirmation notification
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Account Created Successfully"),
         behavior: SnackBarBehavior.floating,
@@ -45,12 +53,11 @@ class AuthProvider with ChangeNotifier {
         duration: Duration(seconds: 3),
       ));
 
-      // Navigate to home screen
       Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {
       print("Error signing up: $e");
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Error Creating Account"),
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Error Creating Account: $e"),
         behavior: SnackBarBehavior.floating,
         backgroundColor: apptheme.ErrorColor,
         duration: Duration(seconds: 3),
