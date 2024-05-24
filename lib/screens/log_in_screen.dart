@@ -1,9 +1,12 @@
+// lib/screens/login_screen.dart
+
+import 'package:eatsy_food_delivery_app/provider/auth_provider.dart';
+import 'package:eatsy_food_delivery_app/services/auth_service.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:eatsy_food_delivery_app/screens/create_account_page.dart';
 import 'package:eatsy_food_delivery_app/screens/forgot_password_screen.dart';
-import 'package:eatsy_food_delivery_app/services/auth_service.dart';
-import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -11,13 +14,10 @@ class LoginScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void signinuser() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text, password: passwordController.text);
-  }
-
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: apptheme.primaryColor,
@@ -34,23 +34,12 @@ class LoginScreen extends StatelessWidget {
                           constraints:
                               BoxConstraints(maxHeight: 100, maxWidth: 100),
                           child: Image.asset("assets/cutlery.png")),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Text(
-                        "Welcome to Eatsy",
-                        style: apptheme.LoginWelcome,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Log in if you already have an Eatsy account",
-                        style: apptheme.LoginText1,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      SizedBox(height: 16),
+                      Text("Welcome to Eatsy", style: apptheme.LoginWelcome),
+                      SizedBox(height: 20),
+                      Text("Log in if you already have an Eatsy account",
+                          style: apptheme.LoginText1),
+                      SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextField(
@@ -64,9 +53,7 @@ class LoginScreen extends StatelessWidget {
                               contentPadding: EdgeInsets.all(12)),
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextField(
@@ -96,16 +83,12 @@ class LoginScreen extends StatelessWidget {
                                             ForgotPasswordScreen(),
                                       ));
                                 },
-                                child: Text(
-                                  "Forgot Password ?",
-                                  style: apptheme.LoginText1,
-                                ))
+                                child: Text("Forgot Password ?",
+                                    style: apptheme.LoginText1))
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      SizedBox(height: 20),
                       SizedBox(
                         height: 56,
                         width: 310,
@@ -120,23 +103,14 @@ class LoginScreen extends StatelessWidget {
                                         borderRadius:
                                             BorderRadius.circular(10)))),
                             onPressed: () {
-                              signinuser();
+                              authProvider.signIn(emailController.text,
+                                  passwordController.text);
                             },
-                            child: Text(
-                              "Sign In",
-                              style: apptheme.ButtonText,
-                            )),
+                            child: Text("Sign In", style: apptheme.ButtonText)),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Or",
-                        style: apptheme.LoginText1,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      SizedBox(height: 20),
+                      Text("Or", style: apptheme.LoginText1),
+                      SizedBox(height: 20),
                       SizedBox(
                         height: 56,
                         width: 310,
@@ -157,26 +131,18 @@ class LoginScreen extends StatelessWidget {
                                     builder: (context) => CreateAccountScreen(),
                                   ));
                             },
-                            child: Text(
-                              "Create an Eatsy Account",
-                              style: apptheme.ButtonText,
-                            )),
+                            child: Text("Create an Eatsy Account",
+                                style: apptheme.ButtonText)),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "You can also log in using",
-                        style: apptheme.LoginText1,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      SizedBox(height: 20),
+                      Text("You can also log in using",
+                          style: apptheme.LoginText1),
+                      SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               AuthService().signInWithGoogle();
                             },
                             child: ConstrainedBox(
@@ -184,11 +150,11 @@ class LoginScreen extends StatelessWidget {
                                     BoxConstraints(maxHeight: 30, maxWidth: 30),
                                 child: Image.asset("assets/google.png")),
                           ),
-                          SizedBox(
-                            width: 50,
-                          ),
+                          SizedBox(width: 50),
                           GestureDetector(
-                            onTap: (){/* Apple Sign In */},
+                            onTap: () {
+                              // Apple Sign In
+                            },
                             child: ConstrainedBox(
                                 constraints:
                                     BoxConstraints(maxHeight: 30, maxWidth: 30),
