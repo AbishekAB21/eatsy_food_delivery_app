@@ -18,7 +18,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final authProvider = Provider.of<AuthenticationProvider>(context);
 
     return SafeArea(
       child: Scaffold(

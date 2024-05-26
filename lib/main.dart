@@ -12,7 +12,7 @@ void main() async {
   );
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
-        create: (_) => AuthProvider()), // AuthProvider
+        create: (_) => AuthenticationProvider()), // AuthenticationProvider
   ], child: const MyApp()));
 }
 

@@ -2,13 +2,13 @@ import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthProvider with ChangeNotifier {
+class AuthenticationProvider with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   User? _user;
   User? get user => _user;
 
-  AuthProvider() {
+  AuthenticationProvider() {
     _loadCurrentUser();
   }
 

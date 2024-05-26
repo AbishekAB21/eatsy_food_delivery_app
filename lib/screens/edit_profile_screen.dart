@@ -9,7 +9,7 @@ class EditProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final authProvider = Provider.of<AuthenticationProvider>(context);
     final currentUser = authProvider.user;
 
     return SafeArea(
