@@ -2,9 +2,7 @@ import 'package:eatsy_food_delivery_app/models/restaurant_model.dart';
 import 'package:eatsy_food_delivery_app/screens/restaurant_details_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:eatsy_food_delivery_app/widgets/restaurant_tags.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;

@@ -1,6 +1,7 @@
 import 'package:eatsy_food_delivery_app/provider/auth_provider.dart';
 import 'package:eatsy_food_delivery_app/screens/log_in_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
+import 'package:eatsy_food_delivery_app/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -42,51 +43,26 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         style: apptheme.LoginWelcome,
                       ),
                       SizedBox(height: 30),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 50),
-                        child: TextField(
+                      ReusableTexfields(
                           controller: emailController,
-                          decoration: InputDecoration(
-                              hintText: "E-mail",
-                              hintStyle: apptheme.LoginHintText,
-                              prefixIcon: Icon(Icons.email_rounded),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              contentPadding: EdgeInsets.all(12)),
-                        ),
-                      ),
+                          hint: "E- Mail",
+                          hiddenText: false,
+                          prefixIcon: Icon(Icons.email_rounded),
+                          suffixIcon: Icon(null)),
                       SizedBox(height: 10),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 50),
-                        child: TextField(
+                      ReusableTexfields(
                           controller: passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              hintText: "Password",
-                              hintStyle: apptheme.LoginHintText,
-                              prefixIcon: Icon(Icons.password_rounded),
-                              suffixIcon: Icon(Icons.visibility_off_rounded),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              contentPadding: EdgeInsets.all(12)),
-                        ),
-                      ),
+                          hint: "Enter Password",
+                          hiddenText: true,
+                          prefixIcon: Icon(Icons.password_rounded),
+                          suffixIcon: Icon(Icons.visibility_off_rounded)),
                       SizedBox(height: 10),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 50),
-                        child: TextField(
+                      ReusableTexfields(
                           controller: confirmPasswordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              hintText: "Confirm Password",
-                              hintStyle: apptheme.LoginHintText,
-                              prefixIcon: Icon(Icons.password_rounded),
-                              suffixIcon: Icon(Icons.visibility_off_rounded),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              contentPadding: EdgeInsets.all(12)),
-                        ),
-                      ),
+                          hint: "Confirm Password",
+                          hiddenText: true,
+                          prefixIcon: Icon(Icons.password_rounded),
+                          suffixIcon: Icon(Icons.visibility_off_rounded)),
                       SizedBox(height: 30),
                       SizedBox(
                         height: 56,
@@ -112,7 +88,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                                   .showSnackBar(SnackBar(
                                 content: Text("Passwords do not match"),
                                 behavior: SnackBarBehavior.floating,
-                                backgroundColor: Colors.red,
+                                backgroundColor: apptheme.ErrorColor,
                                 duration: Duration(seconds: 3),
                               ));
                             }
