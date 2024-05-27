@@ -1,9 +1,7 @@
 import 'package:eatsy_food_delivery_app/provider/auth_provider.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:eatsy_food_delivery_app/widgets/textfield_profile_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class EditProfileScreen extends StatelessWidget {
@@ -30,7 +28,6 @@ class EditProfileScreen extends StatelessWidget {
               Stack(children: [
                 CircleAvatar(
                   radius: 50,
-                 // backgroundImage: AssetImage("assets/User.png",),
                   backgroundColor: apptheme.primaryColor2,
                 ),
                 Positioned(
