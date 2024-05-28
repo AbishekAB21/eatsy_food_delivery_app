@@ -1,4 +1,5 @@
 import 'package:eatsy_food_delivery_app/provider/auth_provider.dart';
+import 'package:eatsy_food_delivery_app/screens/log_in_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,13 +27,21 @@ class LogOutBox extends StatelessWidget {
               TextButton(
                   onPressed: () async {
                     // await FirebaseAuth.instance.signOut();
-                    await Provider.of<AuthenticationProvider>(context, listen: false).signOut();                    Navigator.pop(context);
+                    await Provider.of<AuthenticationProvider>(context,
+                            listen: false)
+                        .signOut();
+                    Navigator.pop(context);
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ));
                   },
                   child: Text(
                     "Yes",
                     style: apptheme.UserName,
                   )),
-              TextButton( 
+              TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
