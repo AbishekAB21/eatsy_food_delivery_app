@@ -1,4 +1,6 @@
 import 'package:eatsy_food_delivery_app/models/category_model.dart';
+import 'package:eatsy_food_delivery_app/models/restaurant_model.dart';
+import 'package:eatsy_food_delivery_app/screens/restaurant_listing.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:flutter/material.dart';
 
@@ -8,8 +10,19 @@ class CategoryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Restaurant> restaurants = Restaurant.restaurants
+        .where(
+          (restaurant) => restaurant.tags.contains(category.name),
+        )
+        .toList();
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RestaurantListingScreen(restaurants: restaurants),
+            ));
+      },
       child: Container(
         width: 80,
         margin: EdgeInsets.only(right: 5.0),

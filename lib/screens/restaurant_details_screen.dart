@@ -9,7 +9,6 @@ class RestaurantDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Restaurant restaurant = Restaurant.restaurants[0];
     return SafeArea(
       child: Scaffold(
         backgroundColor: apptheme.primaryColor,
