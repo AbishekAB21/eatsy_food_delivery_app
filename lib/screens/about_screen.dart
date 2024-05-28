@@ -12,6 +12,6 @@ class AboutScreen extends StatelessWidget {
       body: Center(
         child: Text("About Screen"),
       ),
-    );;
+    );
   }
 }

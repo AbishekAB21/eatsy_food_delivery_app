@@ -2,7 +2,6 @@ import 'package:eatsy_food_delivery_app/screens/about_screen.dart';
 import 'package:eatsy_food_delivery_app/screens/orders_screen.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class OrderAndAboutBox extends StatelessWidget {
   const OrderAndAboutBox({super.key});
