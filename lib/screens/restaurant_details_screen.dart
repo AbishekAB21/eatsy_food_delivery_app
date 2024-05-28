@@ -4,11 +4,12 @@ import 'package:eatsy_food_delivery_app/widgets/restaurant_info.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
-  const RestaurantDetailsScreen({super.key});
+  final Restaurant restaurant; 
+  const RestaurantDetailsScreen({super.key, required this.restaurant});
 
   @override
   Widget build(BuildContext context) {
-    Restaurant restaurant = Restaurant.restaurants[0];
+    //Restaurant restaurant = Restaurant.restaurants[0];
     return SafeArea(
       child: Scaffold(
         backgroundColor: apptheme.primaryColor,
@@ -61,6 +62,8 @@ class RestaurantDetailsScreen extends StatelessWidget {
               ),
               RestaurantInformationScreen(restaurant: restaurant),
               ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 itemCount: restaurant.tags.length,
                 itemBuilder: (context, index) {
@@ -92,10 +95,28 @@ class RestaurantDetailsScreen extends StatelessWidget {
               .map((menuItem) => Column(
                     children: [
                       Container(
+                        color: apptheme.secondaryColor,
+                        padding: EdgeInsets.symmetric(horizontal: 20),
                         child: ListTile(
-                          title: Text(menuItem.name),
+                          dense: true,
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(menuItem.name, style: apptheme.headline5,),
+                          subtitle: Text(menuItem.description),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text("₹${menuItem.price}",style: apptheme.bodyText1,),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.add_circle_rounded,
+                                    color: apptheme.primaryColor2,
+                                  ))
+                            ],
+                          ),
                         ),
-                      )
+                      ),
+                      Divider(height: 2,)
                     ],
                   ))
               .toList(),

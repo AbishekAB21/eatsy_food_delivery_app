@@ -15,8 +15,8 @@ class RestaurantCard extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => RestaurantDetailsScreen(),
-            ));
+              builder: (context) => RestaurantDetailsScreen(restaurant: restaurant),
+            ),);
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

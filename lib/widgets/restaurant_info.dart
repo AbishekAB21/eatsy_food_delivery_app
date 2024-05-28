@@ -10,6 +10,7 @@ class RestaurantInformationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: apptheme.secondaryColor,
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
