@@ -31,6 +31,7 @@ abstract class AppTheme {
   final TextStyle RestaurantInfoScreenTitle;
   final TextStyle RestaurantTags;
   final TextStyle headline5;
+  final TextStyle healdline4;
   final TextStyle bodyText1;
 
   AppTheme({
@@ -62,6 +63,7 @@ abstract class AppTheme {
     required this.RestaurantInfoScreenTitle,
     required this.RestaurantTags,
     required this.headline5,
+    required this.healdline4,
     required this.bodyText1,
   });
 }
@@ -135,6 +137,7 @@ class AppDefaultTheme extends AppTheme {
                 color: Color.fromARGB(255, 236, 110, 101),
                 fontWeight: FontWeight.w900),
             headline5: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.bold),
+            healdline4: TextStyle(fontSize: 18, color: Color.fromARGB(255, 236, 110, 101), fontWeight: FontWeight.bold),
             bodyText1: TextStyle(fontSize: 14, color: Colors.black)
             );
 }

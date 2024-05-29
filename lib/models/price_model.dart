@@ -13,7 +13,7 @@ class Price extends Equatable{
   static List<Price> prices = [
    
    Price(id: 1, price: '₹'),
-   Price(id: 2, price: '₹₹'),
-   Price(id: 3, price: '₹₹₹')
+   Price(id: 2, price: '₹ ₹'),
+   Price(id: 3, price: '₹ ₹ ₹')
   ];
 }
