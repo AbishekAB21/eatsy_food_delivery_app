@@ -13,10 +13,12 @@ class RestaurantCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => RestaurantDetailsScreen(restaurant: restaurant),
-            ),);
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                RestaurantDetailsScreen(restaurant: restaurant),
+          ),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -77,4 +79,3 @@ class RestaurantCard extends StatelessWidget {
     );
   }
 }
-
