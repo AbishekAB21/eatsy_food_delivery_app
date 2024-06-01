@@ -1,5 +1,3 @@
-import 'package:eatsy_food_delivery_app/models/category_model.dart';
-import 'package:eatsy_food_delivery_app/models/price_model.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:eatsy_food_delivery_app/widgets/category_filter.dart';
 import 'package:eatsy_food_delivery_app/widgets/price_filter.dart';

@@ -1,5 +1,4 @@
 import 'package:eatsy_food_delivery_app/bloc/filters/filters_bloc.dart';
-import 'package:eatsy_food_delivery_app/models/category_model.dart';
 import 'package:eatsy_food_delivery_app/utils/apptheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
