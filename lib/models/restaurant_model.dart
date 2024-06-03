@@ -8,6 +8,7 @@ class Restaurant extends Equatable {
   final List<String> tags;
   final List<MenuItem> menuitems;
   final int deliveryTime;
+  final String priceCatrgory;
   final double deliveryFee;
   final double distance;
 
@@ -18,12 +19,21 @@ class Restaurant extends Equatable {
       required this.tags,
       required this.menuitems,
       required this.deliveryTime,
+      required this.priceCatrgory,
       required this.deliveryFee,
       required this.distance});
 
   @override
-  List<Object?> get props =>
-      [id, imageUrl, name, tags, deliveryTime, deliveryFee, distance];
+  List<Object?> get props => [
+        id,
+        imageUrl,
+        name,
+        tags,
+        deliveryTime,
+        deliveryFee,
+        distance,
+        priceCatrgory
+      ];
 
   static List<Restaurant> restaurants = [
     Restaurant(
@@ -40,6 +50,7 @@ class Restaurant extends Equatable {
             .where((menuItem) => menuItem.restaurantId == 1)
             .toList(),
         deliveryTime: 30,
+        priceCatrgory: "₹",
         deliveryFee: 5.0,
         distance: 1.0),
     Restaurant(
@@ -56,6 +67,7 @@ class Restaurant extends Equatable {
             .where((menuItem) => menuItem.restaurantId == 2)
             .toList(),
         deliveryTime: 30,
+        priceCatrgory: "₹",
         deliveryFee: 5.0,
         distance: 1.0),
     Restaurant(
@@ -72,6 +84,7 @@ class Restaurant extends Equatable {
             .where((menuItem) => menuItem.restaurantId == 3)
             .toList(),
         deliveryTime: 30,
+        priceCatrgory: "₹",
         deliveryFee: 5.0,
         distance: 1.0),
     Restaurant(
@@ -88,6 +101,7 @@ class Restaurant extends Equatable {
             .where((menuItem) => menuItem.restaurantId == 4)
             .toList(),
         deliveryTime: 30,
+        priceCatrgory: "₹",
         deliveryFee: 5.0,
         distance: 1.0)
   ];
